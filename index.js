@@ -8,14 +8,22 @@ function computerPlay() {
   return hands[randomIndex]
 }
 
-function playRound(winner) {
-  if (winner === 'rock') return "It's a Tie"
-  return 'You Lose! Paper beats Rock'
-  return 'You Lose! Scissors beat Paper'
-  return 'You Lose! Rock beats Scissors'
-  return 'You Win! Rock beats Scissors'
-  return 'You Win! Paper beats Rock'
-  return 'You Win! Scissors beat Paper'
+function playRound(playerSelection, computerSelection) {
+  if (winner === 'rock') {
+    return "It's a Tie"
+  } else if (playerSelection === 'rock' && computerSelection === 'paper') {
+    return 'You Lose! Paper beats Rock'
+  } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+    return 'You Lose! Scissors beat Paper'
+  } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+    return 'You Lose! Rock beats Scissors'
+  } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+    return 'You Win! Rock beats Scissors'
+  } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+    return 'You Win! Paper beats Rock'
+  } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+    return 'You Win! Scissors beat Paper'
+  }
 }
 
 function getWinner(playerSelection, computerSelection) {

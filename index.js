@@ -25,7 +25,7 @@ function getWinner(playerSelection, computerSelection) {
   }
 }
 
-function playRound(playerSelection, computerSelection) {
+function getRoundOutcome(playerSelection, computerSelection) {
   // Returns the outcome based on the player and computer selections.
   playerSelection = playerSelection.toLowerCase()
   computerSelection = computerSelection.toLowerCase()
@@ -60,25 +60,20 @@ function game() {
     console.log(`Player: ${playerSelection}`)
     console.log(`Computer: ${computerSelection}`)
 
-    roundOutcome = playRound(playerSelection, computerSelection)
+    roundOutcome = getRoundOutcome(playerSelection, computerSelection)
     console.log(roundOutcome)
 
     roundWinner = getWinner(playerSelection, computerSelection)
-    if (roundWinner == 'player') {
-      playerScore += 1
-    } else if (roundWinner == 'computer') {
-      computerScore += 1
-    }
+    roundWinner === 'player' ? (playerScore += 1) : (computerScore += 1)
 
     console.log(`Player score: ${playerScore}`)
     console.log(`Computer score: ${computerScore}`)
 
-    if (i === 4) {
-      if (playerScore > computerScore) {
-        console.log('You won the game!')
-      } else {
-        console.log('You lost the game.')
-      }
+    switch (i) {
+      case 4:
+        playerScore > computerScore
+          ? console.log('You won the game!')
+          : console.log('You lost the game.')
     }
   }
 }

@@ -33,33 +33,16 @@ function getRoundOutcome(playerSelection, computerSelection) {
   let loseMessage = `You Lose! ${computerSelection} beats ${playerSelection}`
   let winMessage = `You Win! ${playerSelection} beats ${computerSelection}`
 
-  switch (playerSelection) {
-    case computerSelection:
-      return "It's a Tie"
-    case 'rock':
-      switch (computerSelection) {
-        case 'paper':
-          return loseMessage
-        case 'scissors':
-          return winMessage
-      }
-      break
-    case 'paper':
-      switch (computerSelection) {
-        case 'rock':
-          return winMessage
-        case 'scissors':
-          return loseMessage
-      }
-      break
-    case 'scissors':
-      switch (computerSelection) {
-        case 'rock':
-          return loseMessage
-        case 'paper':
-          return winMessage
-      }
-      break
+  if (playerSelection === computerSelection) {
+    return "It's a Tie"
+  } else if (
+    (playerSelection === 'rock' && computerSelection === 'paper') ||
+    (playerSelection === 'paper' && computerSelection === 'scissors') ||
+    (playerSelection === 'scissors' && computerSelection === 'rock')
+  ) {
+    return loseMessage
+  } else {
+    return winMessage
   }
 }
 

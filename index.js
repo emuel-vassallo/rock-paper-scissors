@@ -59,9 +59,10 @@ function game() {
     console.log(`Player: ${playerSelection}`)
     console.log(`Computer: ${computerSelection}`)
 
-    roundWinner = getWinner(playerSelection, computerSelection)
-    console.log(`Round outcome: ${roundWinner}`)
+    roundOutcome = playRound(playerSelection, computerSelection)
+    console.log(roundOutcome)
 
+    roundWinner = getWinner(playerSelection, computerSelection)
     if (roundWinner == 'player') {
       playerScore += 1
     } else {
@@ -71,7 +72,6 @@ function game() {
     console.log(`Player score: ${playerScore}`)
     console.log(`Computer score: ${computerScore}`)
 
-    playRound(playerSelection, computerSelection)
     if (i === 4) {
       if (playerScore > computerScore) {
         console.log('You won the game!')

@@ -51,6 +51,8 @@ function game() {
   let computerScore = 0
 
   for (let i = 0; i < 5; i++) {
+    console.log(`Round ${i + 1}`)
+
     playerSelection = prompt('Rock, Paper or Scissors?')
     computerSelection = computerPlay()
 

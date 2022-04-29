@@ -1,7 +1,7 @@
-# Project Rock Paper Scissors
+# Project: Rock Paper Scissors
 
 <p>A simple game of Rock Paper Scissors from The Odin Project's <a href="https://www.theodinproject.com/lessons/foundations-rock-paper-scissors">curriculum</a>.</p>
-pLive preview a href=httpsemuel-vassallo.github.iorock-paper-scissorshereap
+<p>Live preview: <a href="https://emuel-vassallo.github.io/rock-paper-scissors/">here</a></p>
 
 ## What I learnt:
 

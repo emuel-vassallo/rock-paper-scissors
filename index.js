@@ -9,7 +9,7 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  if (winner === 'rock') {
+  if (playerSelection === computerSelection) {
     return "It's a Tie"
   } else if (playerSelection === 'rock' && computerSelection === 'paper') {
     return 'You Lose! Paper beats Rock'

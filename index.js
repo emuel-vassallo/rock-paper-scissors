@@ -8,6 +8,23 @@ function computerPlay() {
   return hands[randomIndex]
 }
 
+function getWinner(playerSelection, computerSelection) {
+  playerSelection = playerSelection.toLowerCase()
+  computerSelection = computerSelection.toLowerCase()
+
+  if (playerSelection === computerSelection) {
+    return 'tie'
+  } else if (
+    (playerSelection === 'rock' && computerSelection === 'paper') ||
+    (playerSelection === 'paper' && computerSelection === 'scissors') ||
+    (playerSelection === 'scissors' && computerSelection === 'rock')
+  ) {
+    return 'computer'
+  } else {
+    return 'player'
+  }
+}
+
 function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase()
   computerSelection = computerSelection.toLowerCase()
@@ -29,31 +46,35 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function getWinner(playerSelection, computerSelection) {
-  playerSelection = playerSelection.toLowerCase()
-  computerSelection = computerSelection.toLowerCase()
+function game() {
+  let playerScore
+  let computerScore
 
-  if (playerSelection === computerSelection) {
-    return 'tie'
-  } else if (
-    (playerSelection === 'rock' && computerSelection === 'paper') ||
-    (playerSelection === 'paper' && computerSelection === 'scissors') ||
-    (playerSelection === 'scissors' && computerSelection === 'rock')
-  ) {
-    return 'computer'
-  } else {
-    return 'player'
+  for (let i = 0; i < 5; i++) {
+    playerSelection = prompt('Rock, Paper or Scissors?')
+    computerSelection = computerPlay()
+
+    console.log(`Player: ${playerSelection}`)
+    console.log(`Computer: ${computerSelection}`)
+
+    roundWinner = getWinner(playerSelection, computerSelection)
+    console.log(`Round winner: ${roundWinner}`)
+
+    if (roundWinner == 'player') {
+      playerScore += 1
+    } else {
+      computerScore += 1
+    }
+
+    playRound(playerSelection, computerSelection)
+    if (i === 5) {
+      if (playerScore > computerScore) {
+        console.log('You won the game!')
+      } else {
+        console.log('You lost the game.')
+      }
+    }
   }
 }
 
-//FUNCTION game:
-// create variable for player score;
-// create variable for computer score;
-
-// create variable for player selection;
-// create variable for computer selection;
-// begin for loop that stops the fifth time:
-// get player selection and store it in the variable;
-// get computer selection and store it in the variable;
-// use the playRound function to get the winner or loser and store it in new variable;
-// print the winner or loser variable;
+game()

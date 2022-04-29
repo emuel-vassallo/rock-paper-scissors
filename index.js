@@ -13,7 +13,7 @@ function getWinner(playerSelection, computerSelection) {
   computerSelection = computerSelection.toLowerCase()
 
   if (playerSelection === computerSelection) {
-    return 'none'
+    return null
   } else if (
     (playerSelection === 'rock' && computerSelection === 'paper') ||
     (playerSelection === 'paper' && computerSelection === 'scissors') ||
@@ -30,19 +30,36 @@ function getRoundOutcome(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase()
   computerSelection = computerSelection.toLowerCase()
 
-  let winMessage = `You Win! ${playerSelection} beats ${computerSelection}`
   let loseMessage = `You Lose! ${computerSelection} beats ${playerSelection}`
+  let winMessage = `You Win! ${playerSelection} beats ${computerSelection}`
 
-  if (playerSelection === computerSelection) {
-    return "It's a Tie"
-  } else if (
-    (playerSelection === 'rock' && computerSelection === 'paper') ||
-    (playerSelection === 'paper' && computerSelection === 'scissors') ||
-    (playerSelection === 'scissors' && computerSelection === 'rock')
-  ) {
-    return loseMessage
-  } else {
-    return winMessage
+  switch (playerSelection) {
+    case computerSelection:
+      return "It's a Tie"
+    case 'rock':
+      switch (computerSelection) {
+        case 'paper':
+          return loseMessage
+        case 'scissors':
+          return winMessage
+      }
+      break
+    case 'paper':
+      switch (computerSelection) {
+        case 'rock':
+          return winMessage
+        case 'scissors':
+          return loseMessage
+      }
+      break
+    case 'scissors':
+      switch (computerSelection) {
+        case 'rock':
+          return loseMessage
+        case 'paper':
+          return winMessage
+      }
+      break
   }
 }
 
@@ -63,7 +80,9 @@ function game() {
     console.log(roundOutcome)
 
     roundWinner = getWinner(playerSelection, computerSelection)
-    roundWinner === 'player' ? (playerScore += 1) : (computerScore += 1)
+    if (roundWinner) {
+      roundWinner === 'player' ? (playerScore += 1) : (computerScore += 1)
+    }
 
     console.log(`Player score: ${playerScore}`)
     console.log(`Computer score: ${computerScore}`)

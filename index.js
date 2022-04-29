@@ -4,7 +4,7 @@ function getRandomIndex() {
 
 function getRandomHand() {
   // Returns a random hand selection.
-  let hands = ['Rock', 'Paper', 'Scissors']
+  const hands = ['Rock', 'Paper', 'Scissors']
   return hands[getRandomIndex()]
 }
 
@@ -30,8 +30,8 @@ function getRoundOutcome(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase()
   computerSelection = computerSelection.toLowerCase()
 
-  let loseMessage = `You Lose! ${computerSelection} beats ${playerSelection}`
-  let winMessage = `You Win! ${playerSelection} beats ${computerSelection}`
+  const loseMessage = `You Lose! ${computerSelection} beats ${playerSelection}`
+  const winMessage = `You Win! ${playerSelection} beats ${computerSelection}`
 
   if (playerSelection === computerSelection) {
     return "It's a Tie"

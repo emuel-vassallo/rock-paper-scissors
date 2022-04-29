@@ -67,7 +67,7 @@ function game() {
     }
 
     playRound(playerSelection, computerSelection)
-    if (i === 5) {
+    if (i === 4) {
       if (playerScore > computerScore) {
         console.log('You won the game!')
       } else {

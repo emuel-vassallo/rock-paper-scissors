@@ -26,24 +26,23 @@ function getWinner(playerSelection, computerSelection) {
 }
 
 function getRoundOutcome(playerSelection, computerSelection) {
-  // Returns the outcome based on the player and computer selections.
+  // Returns the outcome based on the selections of the player and computer.
   playerSelection = playerSelection.toLowerCase()
   computerSelection = computerSelection.toLowerCase()
 
+  let winMessage = `You Win! ${playerSelection} beats ${computerSelection}`
+  let loseMessage = `You Lose! ${computerSelection} beats ${playerSelection}`
+
   if (playerSelection === computerSelection) {
     return "It's a Tie"
-  } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-    return 'You Lose! Paper beats Rock'
-  } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-    return 'You Lose! Scissors beat Paper'
-  } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-    return 'You Lose! Rock beats Scissors'
-  } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-    return 'You Win! Rock beats Scissors'
-  } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-    return 'You Win! Paper beats Rock'
-  } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-    return 'You Win! Scissors beat Paper'
+  } else if (
+    (playerSelection === 'rock' && computerSelection === 'paper') ||
+    (playerSelection === 'paper' && computerSelection === 'scissors') ||
+    (playerSelection === 'scissors' && computerSelection === 'rock')
+  ) {
+    return loseMessage
+  } else {
+    return winMessage
   }
 }
 

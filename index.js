@@ -8,7 +8,7 @@ function computerPlay() {
   return hands[randomIndex]
 }
 
-function showOutcome(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase()
   computerSelection = computerSelection.toLowerCase()
 

@@ -13,7 +13,7 @@ function getWinner(playerSelection, computerSelection) {
   computerSelection = computerSelection.toLowerCase()
 
   if (playerSelection === computerSelection) {
-    return 'tie'
+    return 'none'
   } else if (
     (playerSelection === 'rock' && computerSelection === 'paper') ||
     (playerSelection === 'paper' && computerSelection === 'scissors') ||
@@ -65,7 +65,7 @@ function game() {
     roundWinner = getWinner(playerSelection, computerSelection)
     if (roundWinner == 'player') {
       playerScore += 1
-    } else {
+    } else if (roundWinner == 'computer') {
       computerScore += 1
     }
 

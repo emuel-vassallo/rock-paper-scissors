@@ -2,10 +2,10 @@ function getRandomIndex() {
   return Math.floor(Math.random() * 3)
 }
 
-function computerPlay() {
+function getRandomHand() {
+  // Returns a random hand selection.
   let hands = ['Rock', 'Paper', 'Scissors']
-  let randomIndex = getRandomIndex()
-  return hands[randomIndex]
+  return hands[getRandomIndex()]
 }
 
 function getWinner(playerSelection, computerSelection) {
@@ -26,6 +26,7 @@ function getWinner(playerSelection, computerSelection) {
 }
 
 function playRound(playerSelection, computerSelection) {
+  // Returns the outcome based on the player and computer selections.
   playerSelection = playerSelection.toLowerCase()
   computerSelection = computerSelection.toLowerCase()
 
@@ -54,7 +55,7 @@ function game() {
     console.log(`Round ${i + 1}`)
 
     playerSelection = prompt('Rock, Paper or Scissors?')
-    computerSelection = computerPlay()
+    computerSelection = getRandomHand()
 
     console.log(`Player: ${playerSelection}`)
     console.log(`Computer: ${computerSelection}`)

@@ -47,8 +47,8 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-  let playerScore
-  let computerScore
+  let playerScore = 0
+  let computerScore = 0
 
   for (let i = 0; i < 5; i++) {
     playerSelection = prompt('Rock, Paper or Scissors?')
@@ -65,6 +65,9 @@ function game() {
     } else {
       computerScore += 1
     }
+
+    console.log(`Player score: ${playerScore}`)
+    console.log(`Computer score: ${computerScore}`)
 
     playRound(playerSelection, computerSelection)
     if (i === 4) {

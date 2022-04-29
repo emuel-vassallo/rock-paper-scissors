@@ -60,7 +60,7 @@ function game() {
     console.log(`Computer: ${computerSelection}`)
 
     roundWinner = getWinner(playerSelection, computerSelection)
-    console.log(`Round winner: ${roundWinner}`)
+    console.log(`Round outcome: ${roundWinner}`)
 
     if (roundWinner == 'player') {
       playerScore += 1

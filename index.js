@@ -9,6 +9,9 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
+  playerSelection = playerSelection.toLowerCase()
+  computerSelection = computerSelection.toLowerCase()
+
   if (playerSelection === computerSelection) {
     return "It's a Tie"
   } else if (playerSelection === 'rock' && computerSelection === 'paper') {

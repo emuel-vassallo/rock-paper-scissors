@@ -69,14 +69,11 @@ function game() {
 
     console.log(`Player score: ${playerScore}`)
     console.log(`Computer score: ${computerScore}`)
-
-    switch (i) {
-      case 4:
-        playerScore > computerScore
-          ? console.log('You won the game!')
-          : console.log('You lost the game.')
-    }
   }
+
+  playerScore > computerScore
+    ? console.log('You won the game!')
+    : console.log('You lost the game.')
 }
 
 game()

@@ -19,7 +19,7 @@ header {
 }
 
 #round-heading {
-  margin: 21px 0 0 16px;
+  margin: 21px 0 0 0;
 }
 
 .stats-container {
@@ -39,7 +39,7 @@ header {
 .hand-buttons {
   display: flex;
   gap: 32px;
-  margin-top: 16px;
+  margin: 16px 0 0 0;
 }
 
 .hand-button {
@@ -49,5 +49,5 @@ header {
 }
 
 footer {
-  margin-top: 64px;
+  margin: 64px 0 0 0;
 }

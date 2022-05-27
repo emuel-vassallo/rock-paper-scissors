@@ -33,9 +33,9 @@ function getRoundOutcome(playerSelection, computerSelection) {
     (playerSelection === 'Rock' && computerSelection === 'Paper') ||
     (playerSelection === 'Paper' && computerSelection === 'Scissors') ||
     (playerSelection === 'Scissors' && computerSelection === 'Rock')
-  ) {
+  )
     return loseMessage;
-  }
+
   return winMessage;
 }
 
@@ -52,10 +52,29 @@ function game() {
   const playerScoreTag = document.querySelector('#player-score');
   const computerScoreTag = document.querySelector('#computer-score');
   const roundOutcomeTag = document.querySelector('#round-outcome');
+  const gameOutcomeTag = document.querySelector('#game-outcome');
+  const playAgainButton = document.querySelector('#play-again');
 
   let roundNumber = 0;
   let playerScore = 0;
   let computerScore = 0;
+
+  function resetGame() {
+    selectionButtons.forEach((button) => {
+      button.disabled = false;
+    });
+    playerScore = 0;
+    computerScore = 0;
+    roundNumber = 0;
+    roundNumberTag.textContent = 0;
+    playerScoreTag.textContent = 0;
+    computerScoreTag.textContent = 0;
+    roundOutcomeTag.textContent = '';
+    gameOutcomeTag.textContent = '';
+    playerSelectionTag.textContent = '';
+    computerSelectionTag.textContent = '';
+    playAgainButton.classList.add('hidden');
+  }
 
   selectionButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -83,10 +102,19 @@ function game() {
       computerScoreTag.textContent = computerScore;
 
       if (playerScore === 5 || computerScore === 5) {
-        if (playerScore < computerScore) console.log('You lost the game.');
-        console.log('You won the game!');
+        if (playerScore < computerScore)
+          gameOutcomeTag.textContent = 'You lost this game!';
+        else gameOutcomeTag.textContent = 'You won this game!';
+        playAgainButton.classList.remove('hidden');
+        selectionButtons.forEach((button) => {
+          button.disabled = true;
+        });
       }
     });
+  });
+
+  playAgainButton.addEventListener('click', () => {
+    resetGame();
   });
 }
 

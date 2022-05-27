@@ -8,6 +8,10 @@ body {
   margin: 0;
 }
 
+.hidden {
+  display: none;
+}
+
 header {
   display: flex;
   justify-content: center;
@@ -46,10 +50,23 @@ header {
   margin: 16px 0 0 0;
 }
 
+button {
+  cursor: pointer;
+}
+
 .hand-button {
   width: 150px;
   height: 150px;
-  cursor: pointer;
+}
+
+#game-outcome {
+  margin: 64px 0 32px 0;
+  font-size: 34px;
+}
+
+#play-again {
+  width: 132px;
+  height: 32px;
 }
 
 footer {

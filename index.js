@@ -47,44 +47,51 @@ function changeHandSelection(selectionTag, handSelection) {
 }
 
 function game() {
-  console.log(`Round ${i + 1}`);
+  const roundNumberTag = document.querySelector('#round-number');
+  const selectionButtons = document.querySelectorAll('.hand-button');
+  const playerSelectionTag = document.querySelector('#player-selection');
+  const computerSelectionTag = document.querySelector('#computer-selection');
+  const playerScoreTag = document.querySelector('#player-score');
+  const computerScoreTag = document.querySelector('#computer-score');
 
-  playerSelection = prompt('Rock, Paper or Scissors?');
-  computerSelection = getRandomHand();
+  let roundNumber = 0;
 
-  console.log(`Player: ${playerSelection}`);
-  console.log(`Computer: ${computerSelection}`);
+  selectionButtons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      roundNumber++;
+      roundNumberTag.textContent = roundNumber;
 
-  roundOutcome = getRoundOutcome(playerSelection, computerSelection);
-  console.log(roundOutcome);
+      const clickedButtonId = e.target.id;
 
-  roundWinner = getWinner(playerSelection, computerSelection);
-  if (roundWinner) {
-    roundWinner === 'player' ? (playerScore += 1) : (computerScore += 1);
-  }
+      const computerSelection = getRandomHand();
+      const playerSelection = getClickSelection(clickedButtonId);
 
-  console.log(`Player score: ${playerScore}`);
-  console.log(`Computer score: ${computerScore}`);
+      const roundOutcome = getRoundOutcome(playerSelection, computerSelection);
 
-  if (playerScore > computerScore) {
-    console.log('You won the game!');
-  } else {
-    console.log('You lost the game.');
-  }
+      playerSelectionTag.textContent = playerSelection;
+      computerSelectionTag.textContent = computerSelection;
+
+      console.log(roundOutcome);
+    });
+
+    // roundWinner = getWinner(playerSelection, computerSelection);
+
+    // if (roundWinner) {
+    //   roundWinner === 'player' ? (playerScore += 1) : (computerScore += 1);
+    // }
+
+    // console.log(`Player score: ${playerScore}`);
+    // console.log(`Computer score: ${computerScore}`);
+    //
+    // if (playerScore > computerScore) {
+    //   console.log('You won the game!');
+    // } else {
+    //   console.log('You lost the game.');
+    // }
+
+    // playerScoreTag.textContent = playerScore;
+    // computerScoreTag.textContent = computerScore;
+  });
 }
 
-const selectionButtons = document.querySelectorAll('.hand-button');
-const playerSelectionTag = document.querySelector('#player-selection');
-const computerSelectionTag = document.querySelector('#computer-selection');
-
-selectionButtons.forEach((button) => {
-  button.addEventListener('click', (e) => {
-    const computerSelection = getRandomHand();
-    const clickedButtonId = e.target.id;
-    const playerSelection = getClickSelection(clickedButtonId);
-    const roundOutcome = getRoundOutcome(playerSelection, computerSelection);
-    playerSelectionTag.textContent = playerSelection;
-    computerSelectionTag.textContent = computerSelection;
-    console.log(roundOutcome);
-  });
-});
+game();

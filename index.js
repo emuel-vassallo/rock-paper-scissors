@@ -7,6 +7,12 @@ function getRandomHand() {
   return hands[getRandomIndex()];
 }
 
+function getClickSelection(buttonId) {
+  if (buttonId === 'rock-button') return 'Rock';
+  if (buttonId === 'paper-button') return 'Paper';
+  if (buttonId === 'scissors-button') return 'Scissors';
+}
+
 function getWinner(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
@@ -66,3 +72,17 @@ function game() {
     console.log('You lost the game.');
   }
 }
+
+const selectionButtons = document.querySelectorAll('.hand-button');
+
+selectionButtons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    const computerSelection = getRandomHand();
+    const clickedButtonId = e.target.id;
+    const playerSelection = getClickSelection(clickedButtonId);
+    const roundOutcome = getRoundOutcome(playerSelection, computerSelection);
+    console.log(`You: ${playerSelection}`);
+    console.log(`Computer: ${computerSelection}`);
+    console.log(roundOutcome);
+  });
+});

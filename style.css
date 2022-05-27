@@ -29,6 +29,10 @@ header {
   column-gap: 54px;
 }
 
+#round-outcome {
+  font-size: 14pt;  
+}
+
 #score {
   font-size: 22pt;
   font-weight: 600;

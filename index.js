@@ -53,6 +53,7 @@ function game() {
   const computerSelectionTag = document.querySelector('#computer-selection');
   const playerScoreTag = document.querySelector('#player-score');
   const computerScoreTag = document.querySelector('#computer-score');
+  const roundOutcomeTag = document.querySelector('#round-outcome');
 
   let roundNumber = 0;
 
@@ -71,10 +72,10 @@ function game() {
       playerSelectionTag.textContent = playerSelection;
       computerSelectionTag.textContent = computerSelection;
 
-      console.log(roundOutcome);
-    });
+      roundOutcomeTag.textContent = roundOutcome;
 
-    // roundWinner = getWinner(playerSelection, computerSelection);
+      roundWinner = getWinner(playerSelection, computerSelection);
+    });
 
     // if (roundWinner) {
     //   roundWinner === 'player' ? (playerScore += 1) : (computerScore += 1);

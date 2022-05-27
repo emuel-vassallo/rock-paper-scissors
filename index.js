@@ -14,14 +14,11 @@ function getClickSelection(buttonId) {
 }
 
 function getWinner(playerSelection, computerSelection) {
-  playerSelection = playerSelection.toLowerCase();
-  computerSelection = computerSelection.toLowerCase();
-
   if (playerSelection === computerSelection) return null;
   if (
-    (playerSelection === 'rock' && computerSelection === 'paper') ||
-    (playerSelection === 'paper' && computerSelection === 'scissors') ||
-    (playerSelection === 'scissors' && computerSelection === 'rock')
+    (playerSelection === 'Rock' && computerSelection === 'Paper') ||
+    (playerSelection === 'Paper' && computerSelection === 'Scissors') ||
+    (playerSelection === 'Scissors' && computerSelection === 'Rock')
   )
     return 'computer';
   return 'player';
@@ -33,11 +30,12 @@ function getRoundOutcome(playerSelection, computerSelection) {
 
   if (playerSelection === computerSelection) return "It's a Tie";
   if (
-    (playerSelection === 'rock' && computerSelection === 'paper') ||
-    (playerSelection === 'paper' && computerSelection === 'scissors') ||
-    (playerSelection === 'scissors' && computerSelection === 'rock')
-  )
+    (playerSelection === 'Rock' && computerSelection === 'Paper') ||
+    (playerSelection === 'Paper' && computerSelection === 'Scissors') ||
+    (playerSelection === 'Scissors' && computerSelection === 'Rock')
+  ) {
     return loseMessage;
+  }
   return winMessage;
 }
 
@@ -78,17 +76,17 @@ function game() {
 
       roundWinner = getWinner(playerSelection, computerSelection);
       if (roundWinner) {
-        roundWinner === 'player' ? (playerScore += 1) : (computerScore += 1);
+        if (roundWinner === 'player') playerScore++;
+        else computerScore++;
       }
       playerScoreTag.textContent = playerScore;
       computerScoreTag.textContent = computerScore;
-    });
 
-    // if (playerScore > computerScore) {
-    //   console.log('You won the game!');
-    // } else {
-    //   console.log('You lost the game.');
-    // }
+      if (playerScore === 5 || computerScore === 5) {
+        if (playerScore < computerScore) console.log('You lost the game.');
+        console.log('You won the game!');
+      }
+    });
   });
 }
 

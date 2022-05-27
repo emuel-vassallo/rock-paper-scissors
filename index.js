@@ -56,6 +56,8 @@ function game() {
   const roundOutcomeTag = document.querySelector('#round-outcome');
 
   let roundNumber = 0;
+  let playerScore = 0;
+  let computerScore = 0;
 
   selectionButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -75,23 +77,18 @@ function game() {
       roundOutcomeTag.textContent = roundOutcome;
 
       roundWinner = getWinner(playerSelection, computerSelection);
+      if (roundWinner) {
+        roundWinner === 'player' ? (playerScore += 1) : (computerScore += 1);
+      }
+      playerScoreTag.textContent = playerScore;
+      computerScoreTag.textContent = computerScore;
     });
 
-    // if (roundWinner) {
-    //   roundWinner === 'player' ? (playerScore += 1) : (computerScore += 1);
-    // }
-
-    // console.log(`Player score: ${playerScore}`);
-    // console.log(`Computer score: ${computerScore}`);
-    //
     // if (playerScore > computerScore) {
     //   console.log('You won the game!');
     // } else {
     //   console.log('You lost the game.');
     // }
-
-    // playerScoreTag.textContent = playerScore;
-    // computerScoreTag.textContent = computerScore;
   });
 }
 

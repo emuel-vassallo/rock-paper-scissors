@@ -74,6 +74,8 @@ function game() {
 }
 
 const selectionButtons = document.querySelectorAll('.hand-button');
+const playerSelectionTag = document.querySelector('#player-selection');
+const computerSelectionTag = document.querySelector('#computer-selection');
 
 selectionButtons.forEach((button) => {
   button.addEventListener('click', (e) => {
@@ -81,8 +83,8 @@ selectionButtons.forEach((button) => {
     const clickedButtonId = e.target.id;
     const playerSelection = getClickSelection(clickedButtonId);
     const roundOutcome = getRoundOutcome(playerSelection, computerSelection);
-    console.log(`You: ${playerSelection}`);
-    console.log(`Computer: ${computerSelection}`);
+    playerSelectionTag.textContent = playerSelection;
+    computerSelectionTag.textContent = computerSelection;
     console.log(roundOutcome);
   });
 });

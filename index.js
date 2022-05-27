@@ -2,18 +2,13 @@ function getRandomIndex() {
   return Math.floor(Math.random() * 3);
 }
 
-function getRandomHand() {
+function getRandomSelection() {
   const hands = ['Rock', 'Paper', 'Scissors'];
-  return hands[getRandomIndex()];
+  const randomIndex = getRandomIndex();
+  return hands[randomIndex];
 }
 
-function getClickSelection(buttonId) {
-  if (buttonId === 'rock-button') return 'Rock';
-  if (buttonId === 'paper-button') return 'Paper';
-  if (buttonId === 'scissors-button') return 'Scissors';
-}
-
-function getWinner(playerSelection, computerSelection) {
+function getRoundWinner(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) return null;
   if (
     (playerSelection === 'Rock' && computerSelection === 'Paper') ||
@@ -35,13 +30,7 @@ function getRoundOutcome(playerSelection, computerSelection) {
     (playerSelection === 'Scissors' && computerSelection === 'Rock')
   )
     return loseMessage;
-
   return winMessage;
-}
-
-function changeHandSelection(selectionTag, handSelection) {
-  const tag = document.querySelector(selectionTag);
-  tag.textContent = handSelection;
 }
 
 function game() {
@@ -60,20 +49,23 @@ function game() {
   let computerScore = 0;
 
   function resetGame() {
-    selectionButtons.forEach((button) => {
-      button.disabled = false;
-    });
+    roundNumber = 0;
     playerScore = 0;
     computerScore = 0;
-    roundNumber = 0;
-    roundNumberTag.textContent = 0;
-    playerScoreTag.textContent = 0;
-    computerScoreTag.textContent = 0;
-    roundOutcomeTag.textContent = '';
+
+    [roundNumberTag, playerScoreTag, computerScoreTag].forEach(
+      (tag) => (tag.textContent = 0)
+    );
+
+    roundOutcomeTag.textContent = 'First to 5 wins';
     gameOutcomeTag.textContent = '';
-    playerSelectionTag.textContent = '';
-    computerSelectionTag.textContent = '';
+    playerSelectionTag.textContent = '?';
+    computerSelectionTag.textContent = '?';
+
     playAgainButton.classList.add('hidden');
+    playAgainButton.toggleAttribute('hidden', false);
+
+    selectionButtons.forEach((button) => (button.disabled = false));
   }
 
   selectionButtons.forEach((button) => {
@@ -82,22 +74,21 @@ function game() {
       roundNumberTag.textContent = roundNumber;
 
       const clickedButtonId = e.target.id;
-
-      const computerSelection = getRandomHand();
-      const playerSelection = getClickSelection(clickedButtonId);
-
-      const roundOutcome = getRoundOutcome(playerSelection, computerSelection);
+      const playerSelection = clickedButtonId;
+      const computerSelection = getRandomSelection();
 
       playerSelectionTag.textContent = playerSelection;
       computerSelectionTag.textContent = computerSelection;
 
+      const roundOutcome = getRoundOutcome(playerSelection, computerSelection);
       roundOutcomeTag.textContent = roundOutcome;
 
-      roundWinner = getWinner(playerSelection, computerSelection);
+      roundWinner = getRoundWinner(playerSelection, computerSelection);
       if (roundWinner) {
         if (roundWinner === 'player') playerScore++;
         else computerScore++;
       }
+
       playerScoreTag.textContent = playerScore;
       computerScoreTag.textContent = computerScore;
 
@@ -105,17 +96,15 @@ function game() {
         if (playerScore < computerScore)
           gameOutcomeTag.textContent = 'You lost this game!';
         else gameOutcomeTag.textContent = 'You won this game!';
+
         playAgainButton.classList.remove('hidden');
-        selectionButtons.forEach((button) => {
-          button.disabled = true;
-        });
+
+        selectionButtons.forEach((button) => (button.disabled = true));
       }
     });
   });
 
-  playAgainButton.addEventListener('click', () => {
-    resetGame();
-  });
+  playAgainButton.addEventListener('click', () => resetGame());
 }
 
 game();

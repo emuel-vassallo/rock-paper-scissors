@@ -1,79 +1,68 @@
 function getRandomIndex() {
-  return Math.floor(Math.random() * 3)
+  return Math.floor(Math.random() * 3);
 }
 
 function getRandomHand() {
-  // Returns a random hand selection.
-  const hands = ['Rock', 'Paper', 'Scissors']
-  return hands[getRandomIndex()]
+  const hands = ['Rock', 'Paper', 'Scissors'];
+  return hands[getRandomIndex()];
 }
 
 function getWinner(playerSelection, computerSelection) {
-  playerSelection = playerSelection.toLowerCase()
-  computerSelection = computerSelection.toLowerCase()
+  playerSelection = playerSelection.toLowerCase();
+  computerSelection = computerSelection.toLowerCase();
 
-  if (playerSelection === computerSelection) {
-    return null
-  } else if (
+  if (playerSelection === computerSelection) return null;
+  if (
     (playerSelection === 'rock' && computerSelection === 'paper') ||
     (playerSelection === 'paper' && computerSelection === 'scissors') ||
     (playerSelection === 'scissors' && computerSelection === 'rock')
-  ) {
-    return 'computer'
-  } else {
-    return 'player'
-  }
+  )
+    return 'computer';
+  return 'player';
 }
 
 function getRoundOutcome(playerSelection, computerSelection) {
-  // Returns the outcome based on the selections of the player and computer.
-  playerSelection = playerSelection.toLowerCase()
-  computerSelection = computerSelection.toLowerCase()
+  const loseMessage = `You Lose! ${computerSelection} beats ${playerSelection}`;
+  const winMessage = `You Win! ${playerSelection} beats ${computerSelection}`;
 
-  const loseMessage = `You Lose! ${computerSelection} beats ${playerSelection}`
-  const winMessage = `You Win! ${playerSelection} beats ${computerSelection}`
-
-  if (playerSelection === computerSelection) {
-    return "It's a Tie"
-  } else if (
+  if (playerSelection === computerSelection) return "It's a Tie";
+  if (
     (playerSelection === 'rock' && computerSelection === 'paper') ||
     (playerSelection === 'paper' && computerSelection === 'scissors') ||
     (playerSelection === 'scissors' && computerSelection === 'rock')
-  ) {
-    return loseMessage
-  } else {
-    return winMessage
-  }
+  )
+    return loseMessage;
+  return winMessage;
+}
+
+function changeHandSelection(selectionTag, handSelection) {
+  const tag = document.querySelector(selectionTag);
+  tag.textContent = handSelection;
 }
 
 function game() {
-  let playerScore = 0
-  let computerScore = 0
+  console.log(`Round ${i + 1}`);
 
-  for (let i = 0; i < 5; i++) {
-    console.log(`Round ${i + 1}`)
+  playerSelection = prompt('Rock, Paper or Scissors?');
+  computerSelection = getRandomHand();
 
-    playerSelection = prompt('Rock, Paper or Scissors?')
-    computerSelection = getRandomHand()
+  console.log(`Player: ${playerSelection}`);
+  console.log(`Computer: ${computerSelection}`);
 
-    console.log(`Player: ${playerSelection}`)
-    console.log(`Computer: ${computerSelection}`)
+  roundOutcome = getRoundOutcome(playerSelection, computerSelection);
+  console.log(roundOutcome);
 
-    roundOutcome = getRoundOutcome(playerSelection, computerSelection)
-    console.log(roundOutcome)
-
-    roundWinner = getWinner(playerSelection, computerSelection)
-    if (roundWinner) {
-      roundWinner === 'player' ? (playerScore += 1) : (computerScore += 1)
-    }
-
-    console.log(`Player score: ${playerScore}`)
-    console.log(`Computer score: ${computerScore}`)
+  roundWinner = getWinner(playerSelection, computerSelection);
+  if (roundWinner) {
+    roundWinner === 'player' ? (playerScore += 1) : (computerScore += 1);
   }
 
-  playerScore > computerScore
-    ? console.log('You won the game!')
-    : console.log('You lost the game.')
-}
+  console.log(`Player score: ${playerScore}`);
+  console.log(`Computer score: ${computerScore}`);
 
-game()
+  if (playerScore > computerScore) {
+    console.log('You won the game!');
+  } else {
+    console.log('You lost the game.');
+  }
+}

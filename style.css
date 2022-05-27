@@ -1,0 +1,47 @@
+body {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: #cacaca;
+  width: 100%;
+  margin: 0;
+}
+
+.score-container {
+  display: flex;
+  align-items: center;
+  gap: 42px;
+}
+
+#score {
+  align-self: center;
+  font-size: 22pt;
+  font-weight: 600;
+}
+
+.hand-buttons {
+  display: flex;
+  gap: 32px;
+  margin-top: 16px;
+}
+
+.hand-button {
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+}
+
+footer {
+  margin-top: 64px;
+}
